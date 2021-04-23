@@ -32,9 +32,7 @@
             }
         }
     }
-
-    override fun setAdUnitID() = AppConstants.Banner
-}
+  }
 
 ```
 
