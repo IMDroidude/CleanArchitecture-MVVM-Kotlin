@@ -17,6 +17,4 @@ class LoginActivity : XarActivity<LoginActivityBinding, LoginViewModel>(R.layout
         super.onCreate(savedInstanceState)
         mBinding.mViewModel = this.mViewModel
     }
-
-    override fun setAdUnitID(): String = ""
 }

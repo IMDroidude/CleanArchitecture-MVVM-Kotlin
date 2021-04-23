@@ -24,15 +24,9 @@ class SplashActivity : XarActivity<SplashActivityBinding, SplashViewModel>(R.lay
 
         mViewModel.splashCommands.listen(this) {
             when (it) {
-                is SplashViewModel.SplashCommand.OpenNextScreen -> {
-                    launchActivity(it.className.java)
-                }
-                is SplashViewModel.SplashCommand.ShowToast -> {
-                    toast(it.title)
-                }
+                is SplashViewModel.SplashCommand.OpenNextScreen -> launchActivity(it.className.java)
+                is SplashViewModel.SplashCommand.ShowToast -> toast(it.title)
             }
         }
     }
-
-    override fun setAdUnitID() = AppConstants.Banner
 }

@@ -38,7 +38,7 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
 
     var adView: AdView? = null
 
-    abstract fun setAdUnitID():String
+    ///abstract fun setAdUnitID():String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,13 +80,13 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this,windowWidth)
     }
 
-    fun loadBanner(frameContainer:FrameLayout){
-        if(setAdUnitID().isNotEmpty()){
+    fun loadBanner(frameContainer:FrameLayout,bannerAdUnit:String){
+        if(bannerAdUnit.isNotEmpty()){
             adView = AdView(this)
             val adRequest = AdRequest.Builder().build()
             adView?.let {
                 adView?.apply {
-                    adUnitId = setAdUnitID()
+                    adUnitId = bannerAdUnit
                     adSize = getAdaptiveBannerSize()
                     loadAd(adRequest)
 
@@ -96,7 +96,7 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
             }
         } else {
             if(BuildConfig.DEBUG){
-                toast("Bhai jan adUnit empty di hue hai")
+                toast("Bro adUnit Id empty mil rahe hai")
             }
         }
 

@@ -39,6 +39,4 @@ class AuthActivity : XarActivity<AuthActivityBinding, AuthViewModel>(R.layout.au
             }
         }
     }
-
-    override fun setAdUnitID() = AppConstants.Banner
 }

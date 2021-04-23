@@ -1,8 +1,11 @@
 # CleanArchitecture-MVVM-Kotlin
 
 -🐔🐔🐔 CleanArchitecture-MVVM-Kotlin Library to speed up work
-- I will also add code templates to speed up work.
+- Code Templates Video attached. Auto build Activity,ViewModel along with it's binding. See Video
+-
 
+
+## Features
 - MVVM JetPack Components：LiveData、ViewModel、Lifecycle、Navigation
 - Co-routine, Kotlin, Admob Integration
 - Hilt integrated
@@ -13,26 +16,21 @@
   
   ```
    @AndroidEntryPoint
-   
-  class SplashActivity : XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {
-    override val mViewModel: SplashViewModel by viewModels()
+   class SplashActivity : XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {
+       override val mViewModel: SplashViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mBinding.mViewModel = this.mViewModel
+       override fun onCreate(savedInstanceState: Bundle?) {
+           super.onCreate(savedInstanceState)
+           mBinding.mViewModel = this.mViewModel
 
-        mViewModel.splashCommands.listen(this) {
-            when (it) {
-                is SplashViewModel.SplashCommand.OpenNextScreen -> {
-                    launchActivity(it.className.java)
-                }
-                is SplashViewModel.SplashCommand.ShowToast -> {
-                    toast(it.title)
-                }
-            }
-        }
-    }
-  }
+           mViewModel.splashCommands.listen(this) {
+               when (it) {
+                   is SplashViewModel.SplashCommand.OpenNextScreen -> launchActivity(it.className.java)
+                   is SplashViewModel.SplashCommand.ShowToast -> toast(it.title)
+               }
+           }
+       }
+   }
 
 ```
 

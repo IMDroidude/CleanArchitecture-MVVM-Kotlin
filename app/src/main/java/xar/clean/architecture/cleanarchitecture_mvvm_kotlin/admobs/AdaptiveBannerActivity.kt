@@ -20,9 +20,8 @@ class AdaptiveBannerActivity :
         mBinding.mViewModel = this.mViewModel
 
         mBinding.frameAdContainer.postDelayed({
-            loadBanner(mBinding.frameAdContainer)
-        },1000)
+            loadBanner(mBinding.frameAdContainer, AppConstants.admobID)
+        }, 1000)
     }
 
-    override fun setAdUnitID(): String = AppConstants.admobID
 }
