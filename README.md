@@ -6,8 +6,7 @@
   Automatic viewBinding and viewModel in activity like
   
   @AndroidEntryPoint
-class SplashActivity :
-    XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {
+  class SplashActivity :XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {
     override val mViewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
