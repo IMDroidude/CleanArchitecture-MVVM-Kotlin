@@ -36,10 +36,6 @@
 
 ```
 
-SplashViewModel
-
-
-```
 @HiltViewModel
 class SplashViewModel @Inject constructor(
    @ApplicationContext val context:Context) : XarViewModel() 
@@ -60,5 +56,6 @@ class SplashViewModel @Inject constructor(
         class ShowToast(val title:String):SplashCommand()
     }
 }
+
 
 ```
