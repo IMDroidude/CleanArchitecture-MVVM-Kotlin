@@ -36,3 +36,29 @@
 
 ```
 
+SplashViewModel
+
+
+```
+@HiltViewModel
+class SplashViewModel @Inject constructor(
+   @ApplicationContext val context:Context) : XarViewModel() 
+{
+    private val _splashCommands = MutableLiveData<SplashCommand>()
+    val splashCommands : LiveData<SplashCommand> get() = _splashCommands
+   
+    init {
+        viewModelScope.launch {
+		   _splashCommands.postValue(SplashCommand.ShowToast("Welcome User"))
+           delay(2000)
+           _splashCommands.postValue(SplashCommand.OpenNextScreen(MainActivity::class))  
+        }
+    }
+
+    sealed class SplashCommand {
+        class OpenNextScreen(val className: KClass<*>) : SplashCommand()
+        class ShowToast(val title:String):SplashCommand()
+    }
+}
+
+```
