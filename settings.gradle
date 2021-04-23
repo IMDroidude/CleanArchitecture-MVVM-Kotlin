@@ -1,0 +1,3 @@
+include ':xarlib'
+include ':app'
+rootProject.name = "CleanArchitecture-MVVM-Kotlin"
