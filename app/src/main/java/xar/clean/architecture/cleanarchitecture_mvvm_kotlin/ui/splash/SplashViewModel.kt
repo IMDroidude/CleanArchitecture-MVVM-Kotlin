@@ -24,15 +24,11 @@ class SplashViewModel @Inject constructor(
 {
     private val _splashCommands = MutableLiveData<SplashCommand>()
     val splashCommands : LiveData<SplashCommand> get() = _splashCommands
-
     /*private val _splashViewState = MutableLiveData<SplashViewState>()
     val splashViewState : LiveData<SplashViewState> get() = _splashViewState*/
 
     init {
-        //co routine
         viewModelScope.launch {
-
-
            delay(2000)
             _splashCommands.postValue(SplashCommand.OpenNextScreen(MainActivity::class))
 
@@ -40,22 +36,10 @@ class SplashViewModel @Inject constructor(
         }
     }
 
-    fun initiliaze(){
-        if (ContextCompat.checkSelfPermission(context,Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            _splashCommands.postValue(SplashCommand.OpenNextScreen(MainActivity::class))
-        } else {
-            _splashCommands.postValue(SplashCommand.ShowToast("Falani permission not given"))
-        }
-
-    }
-
     sealed class SplashCommand {
         class OpenNextScreen(val className: KClass<*>) : SplashCommand()
         class ShowToast(val title:String):SplashCommand()
-        class PermissionHandling(val description:String) : SplashCommand()
     }
 
-    /*data class SplashViewState(
-        val name: String
-    )*/
+    ///data class SplashViewState(val name: String)
 }

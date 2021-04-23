@@ -15,37 +15,23 @@ import xar.mvvm.xarlib.extensions.listen
 import xar.mvvm.xarlib.extensions.toast
 
 @AndroidEntryPoint
-class SplashActivity :
-    XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {
+class SplashActivity : XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {
     override val mViewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding.mViewModel = this.mViewModel
 
-        mBinding.frameAdContainer.postDelayed(Runnable {
-            loadBanner(mBinding.frameAdContainer)
-        },1000)
-
-        /*mViewModel.initiliaze()
-        mViewModel.splashCommands.listen(this){
-            when(it){
-                is SplashViewModel.SplashCommand.OpenNextScreen ->{
+        mViewModel.splashCommands.listen(this) {
+            when (it) {
+                is SplashViewModel.SplashCommand.OpenNextScreen -> {
                     launchActivity(it.className.java)
-                    //toast("hello)
                 }
-                is SplashViewModel.SplashCommand.ShowToast ->{
-                    Toast.makeText(this@SplashActivity,it.title,Toast.LENGTH_LONG).show()
-                }
-                is SplashViewModel.SplashCommand.PermissionHandling ->{
-
+                is SplashViewModel.SplashCommand.ShowToast -> {
+                    toast(it.title)
                 }
             }
-        }*/
-
-        /*mViewModel.splashViewState.listen(this){
-
-        }*/
+        }
     }
 
     override fun setAdUnitID() = AppConstants.Banner
