@@ -5,15 +5,15 @@
 
   Automatic viewBinding and viewModel in activity like
   
-  @AndroidEntryPoint
-  class SplashActivity :XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {
-    override val mViewModel: SplashViewModel by viewModels()
+    @AndroidEntryPoint
+    class SplashActivity :XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {
+         override val mViewModel: SplashViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mBinding.mViewModel = this.mViewModel
+         override fun onCreate(savedInstanceState: Bundle?) {
+           super.onCreate(savedInstanceState)
+           mBinding.mViewModel = this.mViewModel
 
-        mViewModel.splashCommands.listen(this) {
+            mViewModel.splashCommands.listen(this) {
             when (it) {
                 is SplashViewModel.SplashCommand.OpenNextScreen -> {
                     launchActivity(it.className.java)
@@ -23,8 +23,8 @@
                 }
             }
         }
-    }
-}
+        }
+        }
 
 - MVVM JetPack Components：LiveData、ViewModel、Lifecycle、Navigation
 - Co-routine, Kotlin, Admob Integration
