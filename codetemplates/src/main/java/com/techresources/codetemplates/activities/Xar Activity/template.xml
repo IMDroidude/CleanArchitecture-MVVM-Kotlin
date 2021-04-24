@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="Xar MVVM Activity"
+    description="Creates a Activity with a ViewModel."
+    minApi="15"
+    minBuildApi="15">
+
+    <category value="Activity" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="BlankActivity"
+        help="The name of the fragment class to create" />
+
+    <parameter
+        id="layoutName"
+        name="Activity Layout Name with Binding"
+        type="string"
+        constraints="layout|nonempty|unique"
+        default="blank_activity"
+        suggest="${classToResource(activityClass)}_activity"
+        help="The name of the layout to create" />
+
+    <parameter
+        id="viewModelName"
+        name="ViewModel Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="BlankViewModel"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}ViewModel"
+        help="The name of the ViewModel class to create" />
+
+
+    <thumbs>
+        <thumb>template_blank_fragment.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

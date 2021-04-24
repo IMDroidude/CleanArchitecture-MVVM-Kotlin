@@ -57,3 +57,13 @@ class SplashViewModel @Inject constructor(
 
 
 ```
+
+Things to implement
+  - Interstitial Ads
+  - Force Update
+  - Rating Dialog
+  - add replace fragment
+  - backstack listener
+  - base Adapter
+  - Add acivity to manifest if possible using templates
+  - 
