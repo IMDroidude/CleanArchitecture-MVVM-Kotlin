@@ -9,4 +9,5 @@ class AppMain : XarApplication(){
     override fun onCreate() {
         super.onCreate()
     }
+    override fun enableAdmob(): Boolean = true
 }

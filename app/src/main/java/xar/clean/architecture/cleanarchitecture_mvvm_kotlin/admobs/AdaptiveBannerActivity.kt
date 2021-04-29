@@ -9,7 +9,6 @@ import xar.clean.architecture.cleanarchitecture_mvvm_kotlin.databinding.Adaptive
 import dagger.hilt.android.AndroidEntryPoint
 import xar.clean.architecture.cleanarchitecture_mvvm_kotlin.utils.AppConstants
 
-
 @AndroidEntryPoint
 class AdaptiveBannerActivity :
     XarActivity<AdaptiveBannerActivityBinding, AdaptiveBannerViewModel>(R.layout.adaptive_banner_activity) {
@@ -20,8 +19,14 @@ class AdaptiveBannerActivity :
         mBinding.mViewModel = this.mViewModel
 
         mBinding.frameAdContainer.postDelayed({
+            refreshAd(mBinding.frameAdContainer,AppConstants.Native);
             loadBanner(mBinding.frameAdContainer, AppConstants.admobID)
+            loadInterstitalAd(AppConstants.Interstitial){ adLoadedSuccesfully ->
+                if(adLoadedSuccesfully){
+                    showInterstitial(AppConstants.Interstitial)
+                }
+            }
+
         }, 1000)
     }
-
 }

@@ -17,11 +17,5 @@ class BigActivity : XarActivity<BigActivityBinding, BigViewModel>(R.layout.big_a
         super.onCreate(savedInstanceState)
         mBinding.mViewModel = this.mViewModel
 
-
-        mViewModel.bigCommands.listen(this) {
-            when (it) {
-
-            }
-        }
     }
 }

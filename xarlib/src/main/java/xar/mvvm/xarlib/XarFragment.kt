@@ -11,10 +11,11 @@ import androidx.fragment.app.Fragment
 
 //typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-class XarFragment<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val resLayoutID:Int) : Fragment() {
+abstract class XarFragment<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val resLayoutID:Int) : Fragment() {
 
     private var _binding: DB? = null
-    val binding get() = _binding!!
+    val mBinding get() = _binding!!
+    abstract val mViewModel: VM
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +23,7 @@ class XarFragment<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val resLayout
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater,resLayoutID,container,false)//inflater.invoke(inflater, container, false)
-        return binding.root
+        return mBinding.root
         ///return super.onCreateView(inflater, container, savedInstanceState)
     }
     override fun onDestroyView() {

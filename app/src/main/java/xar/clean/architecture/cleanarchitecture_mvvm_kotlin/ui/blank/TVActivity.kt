@@ -18,10 +18,5 @@ class TVActivity : XarActivity<TVActivityBinding, TVViewModel>(R.layout.t_v_acti
         mBinding.mViewModel = this.mViewModel
 
 
-        mViewModel.t_vCommands.listen(this) {
-            when (it) {
-
-            }
-        }
     }
 }

@@ -18,10 +18,5 @@ class NewActivity : XarActivity<NewActivityBinding, NewViewModel>(R.layout.new_a
         mBinding.mViewModel = this.mViewModel
 
 
-        mViewModel.newCommands.listen(this) {
-            when (it) {
-
-            }
-        }
     }
 }

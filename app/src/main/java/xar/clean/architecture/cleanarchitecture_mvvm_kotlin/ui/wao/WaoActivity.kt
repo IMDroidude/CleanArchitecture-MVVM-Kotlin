@@ -17,11 +17,5 @@ class WaoActivity : XarActivity<WaoActivityBinding, WaoViewModel>(R.layout.wao_a
         super.onCreate(savedInstanceState)
         mBinding.mViewModel = this.mViewModel
 
-
-        mViewModel.waoCommands.listen(this) {
-            when (it) {
-
-            }
-        }
     }
 }
