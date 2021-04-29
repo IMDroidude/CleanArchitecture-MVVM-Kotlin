@@ -56,6 +56,14 @@ class SplashViewModel @Inject constructor(
 }
 
 
+## Pre-requiste -
+
+	_ Add meta data of google appllcationID
+	<meta-data
+		android:name="com.google.android.gms.ads.APPLICATION_ID"
+		android:value="@string/your_app_id" />
+
+
 ```
 
 Things to implement
