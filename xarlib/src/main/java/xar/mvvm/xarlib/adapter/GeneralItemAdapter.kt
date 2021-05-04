@@ -1,30 +1,28 @@
 package xar.mvvm.xarlib.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBinderMapper
-import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import xar.mvvm.xarlib.DataBinderMapperImpl
 
-// FIXME: 28/04/2021 add binding to the adapter
-class GeneralItemAdapter<T>(//val itemResLayoutID: Int,
-                            val binding: ViewDataBinding,
+class GeneralItemAdapter<T,DB:ViewDataBinding>(val resLayoutID:Int,
                             protected val items: List<T>,
-                            val generlItemBinder: GeneralItemBinder<T>) : 
+                            val generlItemBinder: GeneralItemBinder<T,DB>) :
     RecyclerView.Adapter<GeneralItemViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GeneralItemViewHolder {
 
-        /*DataBindingUtil.
-        DataBinderMapper
-        DataBinderMapperImpl*/
-        return GeneralItemViewHolder(binding)
-        //return GeneralItemViewHolder(parent,itemResLayoutID)
+    lateinit var mBinding:DB
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GeneralItemViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        mBinding = DataBindingUtil.inflate(layoutInflater,resLayoutID,parent,false)
+        return GeneralItemViewHolder(mBinding){ pos, view ->
+            generlItemBinder.onItemClicked(pos,view)
+        }
     }
 
     override fun onBindViewHolder(holder: GeneralItemViewHolder, position: Int) {
-        generlItemBinder.onBindData(binding,holder.itemView,position,items[position])
+        generlItemBinder.onBindData(mBinding,holder.itemView,position,items[position])
     }
 
     override fun getItemCount(): Int = items.size

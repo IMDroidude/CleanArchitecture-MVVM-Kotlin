@@ -27,13 +27,17 @@ class SplashViewModel @Inject constructor(
     /*private val _splashCommands = MutableLiveData<SplashCommand>()
     val splashCommands : LiveData<SplashCommand> get() = _splashCommands*/
     val commandFlow = flow<SplashCommand> {
-        delay(2000)
-        emit(SplashCommand.OpenNextScreen(AdaptiveBannerActivity::class))
+        delay(800)
+        emit(SplashCommand.OpenNextScreen(MainActivity::class))
+        /*if(internetNoAvailab)
+            emit(SplashCommand.NetworkErro(""))*/
     }
     /*private val _splashViewState = MutableLiveData<SplashViewState>()
     val splashViewState : LiveData<SplashViewState> get() = _splashViewState*/
 
     init {
+
+
         /*viewModelScope.launch {
            delay(2000)
             _splashCommands.postValue(SplashCommand.OpenNextScreen(MainActivity::class))
@@ -45,6 +49,7 @@ class SplashViewModel @Inject constructor(
     sealed class SplashCommand {
         class OpenNextScreen(val className: KClass<*>) : SplashCommand()
         class ShowToast(val title:String):SplashCommand()
+        ///class NetworkErro(val errorMessage):SplashCommand()
     }
 
     ///data class SplashViewState(val name: String,val className: KClass<*>?)

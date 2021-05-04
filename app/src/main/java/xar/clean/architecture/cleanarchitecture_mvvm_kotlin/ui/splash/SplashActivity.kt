@@ -31,6 +31,7 @@ class SplashActivity : XarActivity<SplashActivityBinding, SplashViewModel>(R.lay
                 when (it) {
                     is SplashViewModel.SplashCommand.OpenNextScreen -> launchActivity(it.className.java)
                     is SplashViewModel.SplashCommand.ShowToast -> toast(it.title)
+                    ////is SplashViewModel.SplashCommand.NetworkErro -> {}
                 }
             }
         }
