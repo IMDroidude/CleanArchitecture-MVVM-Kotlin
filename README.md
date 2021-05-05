@@ -1,5 +1,5 @@
-Project Features
-100% Kotlin
+## Project Features
+**100% Kotlin**
 Modern Architecture
 MVVM (Model-View-ViewModel)
 Single-activity Architecture using Navigation
