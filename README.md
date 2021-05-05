@@ -86,12 +86,11 @@ class SplashViewModel @Inject constructor(
 
 ```
 
-Things to implement
-  - Interstitial Ads
+## Things to implement
+  - Interstitial Ads  - DONE
   - Force Update
   - Rating Dialog
-  - add replace fragment
-  - backstack listener
-  - base Adapter
-  - Add acivity to manifest if possible using templates
-  - 
+  - Generic Adapter DONE
+  - Add acivity to manifest if possible using templates 
+  - Facebook Ads
+  - Android Billing
