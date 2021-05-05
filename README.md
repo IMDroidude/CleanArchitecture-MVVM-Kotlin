@@ -1,9 +1,9 @@
 ## Project Features
 **100% Kotlin**
-Modern Architecture
-MVVM (Model-View-ViewModel)
-Single-activity Architecture using Navigation
-implements separation of concern practices
+- Modern Architecture
+- MVVM (Model-View-ViewModel)
+-Single-activity Architecture using Navigation
+-implements separation of concern practices
 Material design guidelines
 Kotlin Coroutines
 REST API
