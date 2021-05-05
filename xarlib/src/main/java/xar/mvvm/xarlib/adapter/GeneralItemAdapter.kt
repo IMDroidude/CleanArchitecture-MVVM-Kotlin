@@ -7,8 +7,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
 class GeneralItemAdapter<T,DB:ViewDataBinding>(val resLayoutID:Int,
-                            protected val items: List<T>,
-                            val generlItemBinder: GeneralItemBinder<T,DB>) :
+                            protected val items: MutableList<T>,
+                            val itemBinder: GeneralItemBinder<T,DB>) :
     RecyclerView.Adapter<GeneralItemViewHolder>() {
 
     lateinit var mBinding:DB
@@ -17,13 +17,46 @@ class GeneralItemAdapter<T,DB:ViewDataBinding>(val resLayoutID:Int,
         val layoutInflater = LayoutInflater.from(parent.context)
         mBinding = DataBindingUtil.inflate(layoutInflater,resLayoutID,parent,false)
         return GeneralItemViewHolder(mBinding){ pos, view ->
-            generlItemBinder.onItemClicked(pos,view)
+            itemBinder.onItemClicked(pos,items.get(pos),view)
         }
     }
 
     override fun onBindViewHolder(holder: GeneralItemViewHolder, position: Int) {
-        generlItemBinder.onBindData(mBinding,holder.itemView,position,items[position])
+        itemBinder.onBindData(mBinding,holder.itemView,position,items[position])
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 
     override fun getItemCount(): Int = items.size
+
+
+    fun setList(listItems: List<T>) {
+        if (listItems.isNotEmpty()) {
+            this.items.addAll(listItems)
+            notifyDataSetChanged()
+        }
+    }
+
+    fun replaceList(listItems: List<T>) {
+        this.items.clear()
+        this.items.addAll(listItems)
+        notifyDataSetChanged()
+    }
+
+    fun clearList() {
+        this.items.clear()
+        notifyDataSetChanged()
+
+    }
+
+
+    fun T.removeItem() {
+        if (items.isNotEmpty()) {
+            this@GeneralItemAdapter.items.remove(this)
+            notifyDataSetChanged()
+        }
+    }
+
 }

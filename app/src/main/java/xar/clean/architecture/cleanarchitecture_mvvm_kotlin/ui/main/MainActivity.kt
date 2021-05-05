@@ -22,37 +22,21 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        val fruitList = listOf<FruitBO>(FruitBO("apple"),FruitBO("mango"),
-            FruitBO("Banana"), FruitBO("strawberry")
+        val fruitList = mutableListOf<FruitBO>(FruitBO("apple"),FruitBO("mango"),
+            FruitBO("Banana"), FruitBO("strawberry"),
+            FruitBO("PineApple"), FruitBO("Peach"),
+            FruitBO("Apricot"), FruitBO("Guava")
         )
-        /*val fruitAdapter = FruitAdapter(R.layout.item_fruit,fruitList){ pos, aView ->
-
-        }*/
-
-        // FIXME: 28/04/2021 instead of passing layout set binding in a callback which is an attribute of GeneralItemViewHolder
-        // FIXME: 28/04/2021 or pass binding in constructor and return same binding in onBindData. you are good to go
-        ///val generalFruitAdapter = GeneralItemAdapter(R.layout.item_fruit,fruitList,object : GeneralItemBinder<FruitBO> {
-        ///val itemFruitBinding = DataBindingUtil.inflate<ItemFruitBinding>(layoutInflater,R.layout.item_fruit,null,false)
-        val genericFruitAdapter = GeneralItemAdapter<FruitBO,ItemFruitBinding>(R.layout.item_fruit,fruitList,
-        object : GeneralItemBinder<FruitBO,ItemFruitBinding>{
+        val genericFruitAdapter = GeneralItemAdapter<FruitBO, ItemFruitBinding>(R.layout.item_fruit,
+            fruitList, object : GeneralItemBinder<FruitBO,ItemFruitBinding>{
             override fun onBindData(binding: ItemFruitBinding, itemView: View, position: Int, data: FruitBO) {
                 binding.fruitNameTv.text = data.name
             }
-
-            override fun onItemClicked(position: Int, mView: View) {
-                toast("Clicked at $position")
+            override fun onItemClicked(position: Int, item:FruitBO,mView: View) {
+                toast("Clicked at $position ->   ${item.name}")
             }
         })
         recyclerView.adapter = genericFruitAdapter
-
-
-        /*val generalFruitAdapter = GeneralItemAdapter(itemFruitBinding,fruitList,object : GeneralItemBinder<FruitBO> {
-
-            override fun onBindData(binding: ViewDataBinding,itemView: View?, position: Int, data: FruitBO) {
-            }
-            override fun onItemClicked(position: Int, mView: View?) {
-            }
-        })*/
     }
 
     // FIXME: 28/04/2021 create binding instead of passing layoutID
