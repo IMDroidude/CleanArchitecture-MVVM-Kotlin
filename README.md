@@ -1,3 +1,21 @@
+Project Features
+100% Kotlin
+Modern Architecture
+MVVM (Model-View-ViewModel)
+Single-activity Architecture using Navigation
+implements separation of concern practices
+Material design guidelines
+Kotlin Coroutines
+REST API
+Libraries Used
+Retrofit - networking
+Android Jetpack - Navigation, ViewModel, LifeCycle, LiveData
+Kotlin Coroutines - for background processing
+Moshi - for JSON parsing
+Timber - logging
+Room - data caching and offline data (coded but not implemented yet)
+License
+
 # CleanArchitecture-MVVM-Kotlin
 
 -🐔🐔🐔 CleanArchitecture-MVVM-Kotlin Library to speed up work
