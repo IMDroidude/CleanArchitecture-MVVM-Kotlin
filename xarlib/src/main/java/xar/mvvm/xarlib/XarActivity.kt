@@ -30,9 +30,6 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
     abstract val bindingInflater: (LayoutInflater) -> DB
     protected val binding: DB
         get() = _binding as DB*/
-
-    lateinit var recyclerView:RecyclerView
-
     var adView: AdView? = null
     var mInterstitialAd:InterstitialAd? = null
 

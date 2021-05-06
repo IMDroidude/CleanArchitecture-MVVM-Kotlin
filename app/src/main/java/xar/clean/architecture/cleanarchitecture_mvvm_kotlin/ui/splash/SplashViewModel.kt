@@ -24,6 +24,9 @@ class SplashViewModel @Inject constructor(
    @ApplicationContext val context:Context
 ) : XarViewModel() //change it to AppViewModel when upgrade
 {
+    val liveString:LiveData<String> = MutableLiveData<String>().apply {
+        value = "hello"
+    }
     /*private val _splashCommands = MutableLiveData<SplashCommand>()
     val splashCommands : LiveData<SplashCommand> get() = _splashCommands*/
     val commandFlow = flow<SplashCommand> {
