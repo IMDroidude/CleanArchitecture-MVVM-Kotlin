@@ -16,6 +16,8 @@ import xar.clean.architecture.cleanarchitecture_mvvm_kotlin.utils.AppConstants
 import xar.mvvm.xarlib.extensions.launchActivity
 import xar.mvvm.xarlib.extensions.listen
 import xar.mvvm.xarlib.extensions.toast
+import xar.mvvm.xarlib.prefs.PrefStore
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashActivity : XarActivity<SplashActivityBinding, SplashViewModel>(R.layout.splash_activity) {

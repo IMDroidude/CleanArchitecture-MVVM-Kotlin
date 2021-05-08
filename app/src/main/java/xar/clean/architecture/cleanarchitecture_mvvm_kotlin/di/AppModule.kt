@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import xar.mvvm.xarlib.prefs.PrefStore
 import xar.mvvm.xarlib.prefs.SharedPrefStore
 
 @Module
@@ -13,7 +14,7 @@ import xar.mvvm.xarlib.prefs.SharedPrefStore
 class AppModule {
 
     @Provides
-    fun providePrefContext(@ApplicationContext context: Context): SharedPrefStore {
+    fun providePrefContext(@ApplicationContext context: Context): PrefStore {
         return SharedPrefStore(context)
     }
 }
