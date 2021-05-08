@@ -82,6 +82,11 @@ class SplashViewModel @Inject constructor(
 	<meta-data
 		android:name="com.google.android.gms.ads.APPLICATION_ID"
 		android:value="@string/your_app_id" />
+		
+		
+	multiDexEnabled true  
+	dont' forge to add
+	api project(path: ':xarlib') at your app level
 
 
 ```
