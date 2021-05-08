@@ -13,8 +13,14 @@ import xar.mvvm.xarlib.prefs.SharedPrefStore
 @InstallIn(SingletonComponent::class)
 class AppModule {
 
-    @Provides
-    fun providePrefContext(@ApplicationContext context: Context): PrefStore {
+    /*@Provides
+    fun providePrefContext(@ApplicationContext context: Context): SharedPrefStore {
         return SharedPrefStore(context)
+    }*/
+
+    @Provides
+    fun providePrefContext(@ApplicationContext context: Context):SharedPrefStore {
+      return SharedPrefStore(context)
     }
+
 }
