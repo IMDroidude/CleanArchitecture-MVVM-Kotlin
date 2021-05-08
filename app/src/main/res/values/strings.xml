@@ -2,4 +2,6 @@
     <string name="app_name">CleanArchitecture-MVVM-Kotlin</string>
 
     <string name="admob_ad_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="facebook_app_id">[APP_ID]</string>
+    <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
 </resources>

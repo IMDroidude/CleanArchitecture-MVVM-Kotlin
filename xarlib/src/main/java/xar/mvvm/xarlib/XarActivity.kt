@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.BuildConfig
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
@@ -20,7 +19,8 @@ import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import xar.mvvm.xarlib.extensions.toast
 
-abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val resLayoutID:Int) : AppCompatActivity(
+
+abstract class XarActivity<DB : ViewDataBinding, VM : XarViewModel>(@LayoutRes val resLayoutID: Int) : AppCompatActivity(
     resLayoutID
 ) {
 
@@ -31,6 +31,7 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
     protected val binding: DB
         get() = _binding as DB*/
     var adView: AdView? = null
+    ///private var facebookAdView :AdView
     var mInterstitialAd:InterstitialAd? = null
 
     var adRequest = AdRequest.Builder().build()
@@ -40,7 +41,7 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = DataBindingUtil.setContentView(this,resLayoutID)
+        mBinding = DataBindingUtil.setContentView(this, resLayoutID)
         mBinding.lifecycleOwner = this
         setContentView(mBinding.root)
         /*_binding = bindingInflater.invoke(layoutInflater)
@@ -58,9 +59,9 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
         })*/
     }
 
-    fun loadNativeAd(frameLayout: FrameLayout,adUnitID: String){
+    fun loadNativeAd(frameLayout: FrameLayout, adUnitID: String){
         val adLoader = AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
-            .forNativeAd { ad : NativeAd ->
+            .forNativeAd { ad: NativeAd ->
                 // Show the ad.
             }
             .withAdListener(object : AdListener() {
@@ -68,16 +69,18 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
                     // Handle the failure by logging, altering the UI, and so on.
                 }
             })
-            .withNativeAdOptions(NativeAdOptions.Builder()
-                // Methods in the NativeAdOptions.Builder class can be
-                // used here to specify individual options settings.
-                .build())
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    // Methods in the NativeAdOptions.Builder class can be
+                    // used here to specify individual options settings.
+                    .build()
+            )
             .build()
     }
 
 
-    fun loadInterstitalAd(adUnitID:String, onAdLoaded: ((isAdLoaded: Boolean) -> Unit)?){
-        InterstitialAd.load(this,adUnitID, adRequest, object : InterstitialAdLoadCallback() {
+    fun loadInterstitalAd(adUnitID: String, onAdLoaded: ((isAdLoaded: Boolean) -> Unit)?){
+        InterstitialAd.load(this, adUnitID, adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
                 /*Log.d(TAG, adError?.message)
@@ -106,7 +109,7 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
                     // Don't forget to set the ad reference to null so you
                     // don't show the ad a second time.
                     mInterstitialAd = null
-                    loadInterstitalAd(adUnitID,null)
+                    loadInterstitalAd(adUnitID, null)
                 }
 
                 override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
@@ -124,7 +127,7 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
             mInterstitialAd?.show(this)
         } else {
             Toast.makeText(this, "Ad wasn't loaded yet.", Toast.LENGTH_SHORT).show()
-            loadInterstitalAd(adUnitID,null)
+            loadInterstitalAd(adUnitID, null)
         }
     }
     override fun onPause() {
@@ -145,10 +148,10 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
 
     fun getAdaptiveBannerSize():AdSize{
         val windowWidth = resources.configuration.screenWidthDp
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this,windowWidth)
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, windowWidth)
     }
 
-    fun loadBanner(frameContainer:FrameLayout,bannerAdUnit:String){
+    fun loadBanner(frameContainer: FrameLayout, bannerAdUnit: String){
         if(bannerAdUnit.isNotEmpty()){
             adView = AdView(this)
             val adRequest = AdRequest.Builder().build()
@@ -170,15 +173,15 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
     }
 
     //newly added
-    fun addFragment(frameContainer:Int,fragment: Fragment){
+    fun addFragment(frameContainer: Int, fragment: Fragment){
         supportFragmentManager.beginTransaction()
-            .add(fragment,fragment.javaClass.canonicalName)
+            .add(fragment, fragment.javaClass.canonicalName)
             .commit()
     }
 
-    fun replaceFragment(frameContainer:Int,fragment: Fragment){
+    fun replaceFragment(frameContainer: Int, fragment: Fragment){
         supportFragmentManager.beginTransaction()
-            .replace(frameContainer,fragment,fragment.javaClass.canonicalName)
+            .replace(frameContainer, fragment, fragment.javaClass.canonicalName)
             .commit()
     }
 
@@ -281,7 +284,7 @@ abstract class XarActivity<DB: ViewDataBinding,VM: XarViewModel>(@LayoutRes val 
         }
     }
 
-    fun refreshAd(frameContainer: FrameLayout,ADMOB_AD_UNIT_ID:String) {
+    fun refreshAd(frameContainer: FrameLayout, ADMOB_AD_UNIT_ID: String) {
         ///refresh_button.isEnabled = false
 
         val builder = AdLoader.Builder(this, ADMOB_AD_UNIT_ID)

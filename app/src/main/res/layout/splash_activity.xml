@@ -16,6 +16,7 @@
         tools:context="xar.clean.architecture.cleanarchitecture_mvvm_kotlin.ui.splash.SplashActivity">
 
         <TextView
+            android:id="@+id/my_tv"
             android:textSize="28sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

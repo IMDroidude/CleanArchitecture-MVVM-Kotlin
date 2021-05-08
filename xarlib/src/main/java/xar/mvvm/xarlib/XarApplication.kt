@@ -2,6 +2,8 @@ package xar.mvvm.xarlib
 
 import android.util.Log
 import androidx.multidex.MultiDexApplication
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.google.android.gms.ads.MobileAds
 import timber.log.Timber
 import xar.mvvm.xarlib.admobs.AppOpenManager
@@ -14,7 +16,16 @@ abstract class XarApplication : MultiDexApplication(){
         super.onCreate()
         MobileAds.initialize(this) { }
         if(enableAdmob()) appOpenManager = AppOpenManager(this)
-
+        if(enableFaceookAd()){
+            // Initialize the Audience Network SDK
+            ///AudienceNetworkAds.initialize(this);
+            ///FacebookSdk.
+        //
+        // (getApplicationContext());// NO need according to new documentatino
+            ///FacebookSdk.fullyInitialize();
+            ///AppEventsLogger.activateApp(this);
+            ///AppEventsLogger.activateApp(this);
+        }
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         } else {
@@ -23,6 +34,7 @@ abstract class XarApplication : MultiDexApplication(){
     }
 
     abstract fun enableAdmob():Boolean
+    abstract fun enableFaceookAd(): Boolean
 
     class ReleaseTree : Timber.DebugTree() {
 

@@ -10,4 +10,5 @@ class AppMain : XarApplication(){
         super.onCreate()
     }
     override fun enableAdmob(): Boolean = true
+    override fun enableFaceookAd(): Boolean = true
 }
